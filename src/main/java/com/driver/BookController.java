@@ -22,39 +22,14 @@ public class BookController {
 	
 	@Autowired
 	BookService service;
-    private List<Book> bookList;
-    private int id;
-
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public BookController(){
-        this.bookList = new ArrayList<Book>();
-        this.id = 1;
-    }
-
-    // post request /create-book
-    // pass book as request body
+   
     @PostMapping("/create-book")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
         // Your code goes here.
         return new ResponseEntity<>(service.createBook(book), HttpStatus.CREATED);
     }
     
-    @GetMapping("/get-book-bt-id/{id}")
+    @GetMapping("/get-book-by-id/{id}")
     public ResponseEntity<Book> getbookbyid(@PathVariable int id){
     	return new ResponseEntity<>(service.findBookById(id), HttpStatus.ACCEPTED);
     }
